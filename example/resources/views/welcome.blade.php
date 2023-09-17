@@ -21,6 +21,6 @@
         </style>
     </head>
     <body class="antialiased">
-        <a href="{{ route('notes.index') }}">عرض شاشة الملاحظات</a>
+        <a href="{{ route('index') }}">عرض شاشة الملاحظات</a>
     </body>
 </html>

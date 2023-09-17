@@ -34,8 +34,8 @@
                 <td>{{ $key->id }}</td>
                 <td>{{ $key->notes }}</td>
                 <td>
-                    <a href="">edit</a>
-                    <a href="">delete</a>
+                    <a href="{{ route('notes.edit',['id'=>$key->id]) }}">تعديل</a>
+                    <a href="{{ route('notes.delete',['id'=>$key->id]) }}">حذف</a>
                 </td>
             </tr>
             @endforeach
