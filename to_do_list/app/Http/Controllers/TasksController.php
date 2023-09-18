@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class TasksController extends Controller
 {
     //
+
     public function create(Request $request){
         $data = new TasksModel;
         $data->task = $request->task;
@@ -25,6 +26,29 @@ class TasksController extends Controller
         }
 
         if($data->save()){
+            return redirect()->route('home')->with([]);
+        }
+
+    }
+
+    public function edit ($noor)
+    {
+        $data=TasksModel::find($noor);
+      return view('admin.edit',['data'=>$data]);
+    }
+    public function update (Request $request) {
+        $data = TasksModel::find($request->queen_rodaina);
+        $data->task = $request->task;
+        if($data->save()) {
+            return redirect()->route('home')->with([]);
+        }
+
+
+    }
+    public function delete ($noor) {
+        $data = TasksModel::find($noor);
+
+        if($data->delete()) {
             return redirect()->route('home')->with([]);
         }
     }

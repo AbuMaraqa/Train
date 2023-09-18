@@ -16,7 +16,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-    <div id="app" class="d-flex flex-column justify-content-between" style="height: 100vh">
+    <div id="app" class="d-flex flex-column" style="height: 100vh">
         @include('layouts.navbar')
         @include('layouts.content')
         @include('layouts.footer')
