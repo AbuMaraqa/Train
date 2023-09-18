@@ -39,6 +39,13 @@ class TasksController extends Controller
     public function update (Request $request) {
         $data = TasksModel::find($request->queen_rodaina);
         $data->task = $request->task;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension; //unique filename
+            $file->storeAs('image', $filename, 'public');
+            $data->image = $filename;
+        }
         if($data->save()) {
             return redirect()->route('home')->with([]);
         }
