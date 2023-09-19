@@ -1,6 +1,15 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{  $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="card h-100">
             <div class="card-header">
                 <h3>To Do List</h3>
@@ -13,7 +22,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Add task</label>
-                                    <input type="text" class="form-control" name="task">
+                                    <input type="text" class="form-control" value="{{ old('task') }}" name="task">
                                 </div>
                             </div>
 
@@ -60,8 +69,8 @@
                                     <td>{{ $key->task }}</td>
                                     <td>{{ $key->user_id }}</td>
                                     <td>{{ $key->insert_at }}</td>
-                                    <td>
-                                        <img src="{{ asset('storage/image/'.$key->image) }}" style="width: 300px" alt="">
+                                    <td class="text-center">
+                                        <img src="{{ asset('storage/image/'.$key->image) }}"  class="img-thumbnail " style="height: 100px" alt="">
                                     </td>
                                     <td>{{ $key->status }}</td>
                                     <td>

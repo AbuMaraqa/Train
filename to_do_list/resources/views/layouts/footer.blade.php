@@ -1,5 +1,10 @@
-<div class="w-100 bg-black text-center a text-white d-flex align-items-center">
-
-    <h3 class=" d-flex flex-row justify-content-center text-center">معاوية</h3>
-
-</div>
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted" >
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2024 Copyright:
+      <a class="text-reset fw-bold">BeFound Online</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->

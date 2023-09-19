@@ -16,10 +16,13 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-    <div id="app" class="d-flex flex-column" style="height: 100vh">
+    <div id="app" class="d-flex flex-column min-vh-100">
+
         @include('layouts.navbar')
         @include('layouts.content')
-        @include('layouts.footer')
+        <div class="mt-auto">
+            @include('layouts.footer')
+        </div>
     </div>
 </body>
 </html>
