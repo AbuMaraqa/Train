@@ -79,4 +79,21 @@ class TasksController extends Controller
             return redirect()->route('home')->with([]);
         }
     }
+
+    public function updateStatus(Request $request){
+        $data = TasksModel::where('id',$request->id)->first();
+        if($request->status == '1'){
+            $data->status = 1;
+        }
+        else{
+            $data->status = 0;
+        }
+        if($data->save()){
+            return response()->json([
+                'data'=>$data,
+                'success'=>'true'
+            ]);
+
+        }
+    }
 }

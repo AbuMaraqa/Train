@@ -14,6 +14,8 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
     <div id="app" class="d-flex flex-column min-vh-100">
@@ -24,5 +26,8 @@
             @include('layouts.footer')
         </div>
     </div>
+
+
+    @yield('script')
 </body>
 </html>

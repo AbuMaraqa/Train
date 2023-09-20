@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TasksModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,6 +26,10 @@ class HomeController extends Controller
     public function index()
     {
         $data = TasksModel::get();
+        // $data = TasksModel::select()->join('users','users.id','=','tasks.user_id')->get();
+        foreach($data as $key){
+            $key->user = User::where('id',$key->user_id)->first();
+        }
         return view('home',['reem'=>$data]);
     }
 }

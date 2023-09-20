@@ -25,3 +25,6 @@ Route::post('/create', [App\Http\Controllers\TasksController::class, 'create'])-
 Route::get('/edit/{noor}',[App\Http\Controllers\TasksController::class, 'edit'])->name('task.edit');
 Route::post('/update',[App\Http\Controllers\TasksController::class, 'update'])->name('task.update');
 Route::get('/delete/{noor}',[App\Http\Controllers\TasksController::class, 'delete'])->name('task.delete');
+
+Route::post('/updateStatus',[App\Http\Controllers\TasksController::class, 'updateStatus'])->name('task.updateStatus');
+

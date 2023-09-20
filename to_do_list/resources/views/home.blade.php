@@ -5,7 +5,7 @@
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
-                        <li>{{  $error }}</li>
+                        <li>{{ $error }}</li>
                     @endforeach
                 </ul>
             </div>
@@ -67,15 +67,21 @@
                                 <tr>
                                     <td>{{ $key->id }}</td>
                                     <td>{{ $key->task }}</td>
-                                    <td>{{ $key->user_id }}</td>
+                                    <td>{{ $key['user']->name }}</td>
                                     <td>{{ $key->insert_at }}</td>
                                     <td class="text-center">
-                                        <img src="{{ asset('storage/image/'.$key->image) }}"  class="img-thumbnail " style="height: 100px" alt="">
+                                        <img src="{{ asset('storage/image/' . $key->image) }}" class="img-thumbnail "
+                                            style="height: 100px" alt="">
                                     </td>
-                                    <td>{{ $key->status }}</td>
                                     <td>
-                                        <a href="{{ route('task.edit',['noor'=>$key->id]) }}" class="btn btn-success">edit</a>
-                                        <a href="{{ route('task.delete',['noor'=>$key->id]) }}" class="btn btn-danger">delete</a>
+                                        <input @if($key->status == 1) checked @endif onclick="updateStatus({{ $key->id }})" id="status_{{ $key->id }}"
+                                            type="checkbox">
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('task.edit', ['noor' => $key->id]) }}"
+                                            class="btn btn-success">edit</a>
+                                        <a href="{{ route('task.delete', ['noor' => $key->id]) }}"
+                                            class="btn btn-danger">delete</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -87,4 +93,41 @@
         </div>
     </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        function updateStatus(id) {
+            let checked = 0;
+            if (document.getElementById('status_'+id).checked) {
+                checked = 1;
+            } else {
+                checked = 0;
+            }
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            // Send an AJAX request with the CSRF token
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                }
+            });
+
+            $.ajax({
+                url: "{{ route('task.updateStatus') }}", // Replace with your own URL
+                method: "post",
+                data: {
+                    'id': id,
+                    'status': checked
+                }, // Specify the expected data type
+                success: function(data) {
+                    console.log(data);
+                },
+                error: function(xhr, status, error) {
+                    // This function is called when there is an error with the request
+                    alert('error');
+                }
+            });
+
+        }
+    </script>
 @endsection
