@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TasksModel;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -95,5 +96,16 @@ class TasksController extends Controller
             ]);
 
         }
+    }
+
+    public function search(Request $request){
+        $data = TasksModel::where('task','like','%'.$request->search.'%')->get();
+        foreach($data as $key){
+            $key->user = User::where('id',$key->user_id)->first();
+        }
+        return response()->json([
+            'success'=>'true',
+            'view'=>view('admin.ajax.table',['data'=>$data])->render()
+        ]);
     }
 }

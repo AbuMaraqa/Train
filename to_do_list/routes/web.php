@@ -27,4 +27,5 @@ Route::post('/update',[App\Http\Controllers\TasksController::class, 'update'])->
 Route::get('/delete/{noor}',[App\Http\Controllers\TasksController::class, 'delete'])->name('task.delete');
 
 Route::post('/updateStatus',[App\Http\Controllers\TasksController::class, 'updateStatus'])->name('task.updateStatus');
+Route::post('/search',[App\Http\Controllers\TasksController::class, 'search'])->name('task.search');
 
